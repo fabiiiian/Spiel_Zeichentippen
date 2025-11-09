@@ -99,7 +99,7 @@ namespace Spiel
                     ZeichenLabel.Text = zeichen.ToString();
 
                 int restZeichen = zufälligeZeichen.Length - zeichenIndex;
-                Restzeichenlabel.Text = "noch " + restZeichen + " Zeichen übrig";
+                Restzeichenlabel.Text = "Es sind noch " + restZeichen + " Zeichen übrig.";
             }
         }
 
