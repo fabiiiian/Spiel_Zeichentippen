@@ -60,6 +60,27 @@ namespace Spiel
 
         }
 
+        private void StopButton_Click(object sender, EventArgs e)
+        {
+            Stop();
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //wenn noch nicht Start gedrückt dann darf kein nichts Eingeben werden.
+            if (ZeichenLabel.Text.Length == 0)
+            {
+                return;
+            }
+            char zeichen = zufälligeZeichen[zeichenIndex];
+            if (e.KeyChar == zeichen)
+            {
+                zeichenIndex++;
+                ZeigeZeichen();
+            }
+
+        }
+
         void ZeigeZeichen()
         {
             if (zeichenIndex == zufälligeZeichen.Length)
@@ -74,17 +95,12 @@ namespace Spiel
 
                 if (zeichen == '&')
                     ZeichenLabel.Text = "&&";
-                else 
+                else
                     ZeichenLabel.Text = zeichen.ToString();
 
                 int restZeichen = zufälligeZeichen.Length - zeichenIndex;
                 Restzeichenlabel.Text = "noch " + restZeichen + " Zeichen übrig";
             }
-        }
-
-        private void StopButton_Click(object sender, EventArgs e)
-        {
-            Stop();
         }
 
         private void Stop()
@@ -94,22 +110,6 @@ namespace Spiel
             stoppuhr.Stop();
             MessageBox.Show(
                 string.Format("Du hast {0:0.00} Sekunden benötigt.", stoppuhr.Elapsed.TotalSeconds));
-        }
-
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-           //wenn noch nicht Start gedrückt dann darf kein nichts Eingeben werden.
-           if (ZeichenLabel.Text.Length == 0)
-            {
-                return;
-            }
-            char zeichen = zufälligeZeichen[zeichenIndex];
-            if (e.KeyChar == zeichen)
-            {
-                zeichenIndex++;
-                ZeigeZeichen();
-            }
-            
         }
     }
 }
